@@ -60,41 +60,44 @@ export default function Projects() {
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-4 w-full md:grid md:grid-cols-2 md:gap-8">
-                    {projects.map((project, index) => (
-                        <div key={index} className="flex flex-row md:flex-col h-[130px] sm:h-[150px] md:h-auto bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group">
-                            {/* Project Image Preview */}
-                            <div className="w-1/3 min-w-[100px] max-w-[120px] md:min-w-0 md:max-w-none md:w-full md:h-48 overflow-hidden relative flex-shrink-0 h-full md:h-auto">
-                                <Image
-                                    src={project.image}
-                                    alt={project.title}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                    sizes="(max-width: 768px) 33vw, 50vw"
-                                />
-                            </div>
+                {/* Mobile: Horizontal scroll wrapper, Desktop: Container stays visible */}
+                <div className="w-full overflow-x-auto scrollbar-hide md:overflow-visible">
+                    {/* Inner wrapper forces absolute total width on mobile with w-max */}
+                    <div className="flex flex-nowrap w-max gap-4 px-4 pb-8 md:grid md:grid-cols-2 md:gap-8 md:w-full md:px-0 md:pb-0">
+                        {projects.map((project, index) => (
+                            <div key={index} className="w-[300px] flex-none md:w-auto md:flex-auto bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group flex flex-col">
+                                {/* Project Image Preview */}
+                                <div className="h-40 md:h-48 overflow-hidden relative flex-shrink-0">
+                                    <Image
+                                        src={project.image}
+                                        alt={project.title}
+                                        fill
+                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                        sizes="(max-width: 768px) 300px, 50vw"
+                                    />
+                                </div>
 
-                            {/* Purple Separator Border */}
-                            <div className="hidden md:block h-[2px] w-full bg-purple-600/80 shadow-[0_0_10px_rgba(147,51,234,0.5)]"></div>
-                            <div className="block md:hidden w-[2px] h-full bg-purple-600/80 shadow-[0_0_10px_rgba(147,51,234,0.5)]"></div>
+                                {/* Purple Separator Border */}
+                                <div className="h-[2px] w-full bg-purple-600/80 shadow-[0_0_10px_rgba(147,51,234,0.5)]"></div>
 
-                            {/* Content Details */}
-                            <div className="p-3 md:p-6 flex flex-col flex-1 overflow-hidden justify-center md:justify-start">
-                                <h3 className="text-[13px] sm:text-base md:text-2xl font-bold text-purple-400 mb-1 md:mb-3 drop-shadow-sm transition-colors duration-300 group-hover:text-purple-300 leading-tight line-clamp-1 md:line-clamp-none">{project.title}</h3>
-                                <p className="text-gray-300 text-[10px] sm:text-xs md:text-sm leading-snug mb-1.5 md:mb-6 group-hover:text-gray-200 transition-colors line-clamp-2 sm:line-clamp-3 md:line-clamp-none flex-1">
-                                    {project.description}
-                                </p>
+                                {/* Content Details */}
+                                <div className="p-4 md:p-6 flex flex-col flex-1">
+                                    <h3 className="text-lg md:text-2xl font-bold text-purple-400 mb-2 md:mb-3 drop-shadow-sm transition-colors duration-300 group-hover:text-purple-300 leading-tight">{project.title}</h3>
+                                    <p className="text-gray-300 text-xs md:text-sm leading-relaxed mb-4 md:mb-6 group-hover:text-gray-200 transition-colors line-clamp-3 md:line-clamp-none flex-1">
+                                        {project.description}
+                                    </p>
 
-                                <div className="flex flex-wrap gap-1 md:gap-2 mt-auto overflow-hidden h-4 sm:h-auto md:h-auto">
-                                    {project.tech.map((tech, techIndex) => (
-                                        <div key={techIndex} className="bg-white/5 border border-white/10 rounded md:rounded-full px-1.5 py-[1px] md:px-3 md:py-1 flex items-center gap-1 text-[8px] sm:text-[10px] md:text-xs text-gray-300 whitespace-nowrap transition-all duration-300 hover:border-purple-500/40 cursor-default">
-                                            {tech}
-                                        </div>
-                                    ))}
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2 mt-auto">
+                                        {project.tech.map((tech, techIndex) => (
+                                            <div key={techIndex} className="bg-white/5 border border-white/10 rounded-md md:rounded-full px-2 py-0.5 md:px-3 md:py-1 flex items-center gap-1 text-[10px] md:text-xs text-gray-300 whitespace-nowrap transition-all duration-300 hover:border-purple-500/50 hover:bg-purple-500/20 hover:text-purple-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] cursor-default">
+                                                {tech}
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
