@@ -41,16 +41,16 @@ export default function Projects() {
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center text-white">Projects</h2>
 
                 {/* Police Tape Banner */}
-                <div className="relative w-full mb-10 overflow-hidden">
-                    <div className="relative -mx-6 -rotate-1">
-                        <div className="w-[110%] -ml-[5%] py-2.5 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.4)]">
+                <div className="relative w-full mb-8 md:mb-6 overflow-hidden">
+                    <div className="relative -mx-6 md:mx-0 -rotate-1">
+                        <div className="w-[110%] -ml-[5%] py-2.5 md:py-0 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.4)]">
                             <div
                                 className="overflow-hidden"
                                 style={{
                                     backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.3) 10px, rgba(0,0,0,0.3) 20px)",
                                 }}
                             >
-                                <div className="animate-[marquee_15s_linear_infinite] whitespace-nowrap py-0.5">
+                                <div className="animate-[marquee_15s_linear_infinite] whitespace-nowrap py-0.5 md:py-1">
                                     <span className="text-black font-extrabold text-sm tracking-[0.3em] uppercase">
                                         ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠&nbsp;&nbsp;&nbsp;&nbsp;
                                     </span>
