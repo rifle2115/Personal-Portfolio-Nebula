@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@theme {
+  --color-background: #05050f;
+  --color-foreground: #ffffff;
+  --color-primary-glow: #a855f7;
+  --color-secondary-glow: #3b82f6;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 220 50% 3%;
+    /* Near black (#030712) */
+    --foreground: 0 0% 100%;
+    --primary: 271 81% 56%;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-foreground);
+  background: var(--color-background);
+  font-family: var(--font-sans), sans-serif;
+}
+
+/* Background Stars Animation can go here or directly in the layout */
+.stars-bg {
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #eee, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 90px 40px, #fff, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: moveStars 100s linear infinite;
+}
+
+@keyframes moveStars {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+/* Global Vignette for cinematic depth */
+.vignette-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 40%, rgba(3, 7, 18, 0.8) 120%);
+  z-index: 100;
+  /* Stays on top but doesn't block clicks */
+}
+
+/* The glowing deep purple aura at the top */
+.nebula-glow {
+  position: absolute;
+  top: -80px;
+  /* Reduced top bleed slightly */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  max-width: 1200px;
+  height: 400px;
+  background:
+    radial-gradient(ellipse at top, #ffffff 0%, #d8b4fe 15%, #9333ea 40%, rgba(59, 130, 246, 0.2) 75%, transparent 100%);
+  filter: blur(80px);
+  /* Expanded blur radius significantly */
+  z-index: 0;
+  /* Important: Keep this at 0 so it's visible above the background */
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  /* Smooth realistic light blending */
+  opacity: 0.9;
+}
+
+/* Police tape marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
