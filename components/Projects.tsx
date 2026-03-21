@@ -60,18 +60,17 @@ export default function Projects() {
                     </div>
                 </div>
 
-                <div className="w-full overflow-x-auto whitespace-nowrap pb-8 scroll-smooth scrollbar-hide md:whitespace-normal md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:pb-0">
+                <div className="flex flex-col gap-6 w-full md:grid md:grid-cols-2 md:gap-8">
                     {projects.map((project, index) => (
-                        <div key={index} className="inline-block whitespace-normal align-top w-[300px] mr-5 md:mr-0 md:w-auto md:block bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group">
-                            <div className="flex flex-col h-full">
-                                {/* Project Image Preview */}
-                            <div className="h-40 md:h-48 overflow-hidden relative flex-shrink-0">
+                        <div key={index} className="flex flex-col bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group">
+                            {/* Project Image Preview */}
+                            <div className="h-32 md:h-48 overflow-hidden relative flex-shrink-0">
                                 <Image
                                     src={project.image}
                                     alt={project.title}
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                    sizes="(max-width: 768px) 85vw, 50vw"
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                 />
                             </div>
 
@@ -80,20 +79,19 @@ export default function Projects() {
 
                             {/* Content Details */}
                             <div className="p-4 md:p-6 flex flex-col flex-1">
-                                <h3 className="text-lg md:text-2xl font-bold text-purple-400 mb-2 md:mb-3 drop-shadow-sm transition-colors duration-300 group-hover:text-purple-300 line-clamp-2 md:line-clamp-none leading-tight">{project.title}</h3>
-                                <p className="text-gray-300 text-xs md:text-sm leading-relaxed mb-4 md:mb-6 group-hover:text-gray-200 transition-colors line-clamp-3 md:line-clamp-none flex-1">
+                                <h3 className="text-base sm:text-lg md:text-2xl font-bold text-purple-400 mb-1.5 md:mb-3 drop-shadow-sm transition-colors duration-300 group-hover:text-purple-300 leading-tight">{project.title}</h3>
+                                <p className="text-gray-300 text-xs md:text-sm leading-relaxed mb-3 md:mb-6 group-hover:text-gray-200 transition-colors line-clamp-2 md:line-clamp-none flex-1">
                                     {project.description}
                                 </p>
 
                                 <div className="flex flex-wrap gap-1.5 md:gap-2 mt-auto">
                                     {project.tech.map((tech, techIndex) => (
-                                        <div key={techIndex} className="bg-white/5 border border-white/10 rounded-md md:rounded-full px-2 py-1 md:px-3 flex items-center gap-1 text-[10px] md:text-xs text-gray-300 whitespace-nowrap transition-all duration-300 hover:border-purple-500/50 hover:bg-purple-500/20 hover:text-purple-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] cursor-default">
+                                        <div key={techIndex} className="bg-white/5 border border-white/10 rounded-md md:rounded-full px-2 py-0.5 md:px-3 md:py-1 flex items-center gap-1 text-[10px] md:text-xs text-gray-300 whitespace-nowrap transition-all duration-300 hover:border-purple-500/50 hover:bg-purple-500/20 hover:text-purple-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] cursor-default">
                                             {tech}
                                         </div>
                                     ))}
                                 </div>
                             </div>
-                        </div>
                         </div>
                     ))}
                 </div>
