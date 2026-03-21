@@ -61,11 +61,14 @@ export default function Projects() {
                 </div>
 
                 {/* Mobile: Horizontal scroll wrapper, Desktop: Container stays visible */}
-                <div className="w-full overflow-x-auto scrollbar-hide md:overflow-visible">
+                <div className="w-full overflow-x-auto scrollbar-hide md:overflow-visible snap-x snap-mandatory">
                     {/* Inner wrapper forces absolute total width on mobile with w-max */}
-                    <div className="flex flex-nowrap w-max gap-4 px-4 pb-8 md:grid md:grid-cols-2 md:gap-8 md:w-full md:px-0 md:pb-0">
+                    <div className="flex flex-nowrap w-max gap-4 pb-8 md:grid md:grid-cols-2 md:gap-8 md:w-full md:pb-0">
+                        {/* Left Spacer to allow scrolling past the first item */}
+                        <div className="w-4 shrink-0 md:hidden"></div>
+
                         {projects.map((project, index) => (
-                            <div key={index} className="w-[300px] flex-none md:w-auto md:flex-auto bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group flex flex-col">
+                            <div key={index} className="w-[300px] sm:w-[320px] shrink-0 snap-center md:w-auto md:flex-auto md:snap-none bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group flex flex-col">
                                 {/* Project Image Preview */}
                                 <div className="h-40 md:h-48 overflow-hidden relative flex-shrink-0">
                                     <Image
