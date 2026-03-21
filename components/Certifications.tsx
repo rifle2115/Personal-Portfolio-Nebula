@@ -83,11 +83,11 @@ export default function Certifications() {
     return (
         <section
             id="certifications"
-            className="py-24 px-6 border-t border-white/10 flex flex-col items-center"
+            className="py-16 md:py-24 px-4 md:px-6 border-t border-white/10 flex flex-col items-center"
         >
             <div className="w-full max-w-4xl">
                 <motion.h2
-                    className="text-4xl font-bold mb-14 text-center text-white"
+                    className="text-3xl md:text-4xl font-bold mb-8 md:mb-14 text-center text-white"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -107,26 +107,26 @@ export default function Certifications() {
                         <motion.div
                             key={index}
                             variants={slideInRef(index * 0.1)}
-                            className={`group relative bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-xl p-5 flex items-center gap-5 transition-all duration-300 hover:-translate-y-0.5 ${cert.borderColor} ${cert.glowColor}`}
+                            className={`group relative bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-5 flex flex-col sm:flex-row items-center sm:items-start md:items-center gap-4 md:gap-5 transition-all duration-300 hover:-translate-y-0.5 ${cert.borderColor} ${cert.glowColor}`}
                         >
                             {/* Logo */}
                             <div
-                                className={`flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br ${cert.color} flex items-center justify-center border border-white/10`}
+                                className={`flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-lg bg-gradient-to-br ${cert.color} flex items-center justify-center border border-white/10`}
                             >
                                 {cert.logo}
                             </div>
 
                             {/* Content */}
-                            <div className="flex-1 min-w-0">
-                                <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors duration-300 leading-tight">
+                            <div className="flex-1 min-w-0 text-center sm:text-left">
+                                <h3 className="text-base md:text-lg font-semibold text-white group-hover:text-purple-300 transition-colors duration-300 leading-tight">
                                     {cert.title}
                                 </h3>
-                                <p className="text-sm text-gray-400 mt-0.5">
+                                <p className="text-xs md:text-sm text-gray-400 mt-1 md:mt-0.5">
                                     {cert.issuer}{" "}
-                                    <span className="text-white/20 mx-1">•</span>{" "}
-                                    {cert.year}
+                                    <span className="text-white/20 mx-1 hidden sm:inline">•</span>{" "}
+                                    <span className="block sm:inline">{cert.year}</span>
                                 </p>
-                                <p className="text-sm text-gray-500 mt-1.5 leading-relaxed line-clamp-2">
+                                <p className="text-xs md:text-sm text-gray-500 mt-2 md:mt-1.5 leading-relaxed line-clamp-3 md:line-clamp-2">
                                     {cert.description}
                                 </p>
                             </div>
@@ -136,7 +136,7 @@ export default function Certifications() {
                                 href={cert.verifyLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-400 transition-all duration-300 hover:bg-purple-500/20 hover:border-purple-500/40 hover:text-purple-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)]"
+                                className="flex-shrink-0 w-full sm:w-auto flex items-center justify-center gap-1.5 px-4 py-2 mt-2 sm:mt-0 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-400 transition-all duration-300 hover:bg-purple-500/20 hover:border-purple-500/40 hover:text-purple-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)]"
                             >
                                 Verify
                                 <ExternalLink className="w-3.5 h-3.5" />

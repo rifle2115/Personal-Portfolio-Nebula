@@ -35,11 +35,11 @@ export default function Education() {
     return (
         <section
             id="education"
-            className="py-24 px-6 border-t border-white/10 flex flex-col items-center"
+            className="py-16 md:py-24 px-4 md:px-6 border-t border-white/10 flex flex-col items-center"
         >
             <div className="w-full max-w-4xl">
                 <motion.h2
-                    className="text-4xl font-bold mb-14 text-center text-white"
+                    className="text-3xl md:text-4xl font-bold mb-8 md:mb-14 text-center text-white"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -68,26 +68,26 @@ export default function Education() {
                                 >
                                     {/* Card */}
                                     <div
-                                        className={`w-full md:w-[45%] group bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-xl p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-400/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]`}
+                                        className={`w-full md:w-[45%] group bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-xl p-5 md:p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-400/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]`}
                                     >
                                         {/* Year badge */}
-                                        <span className="inline-block text-xs font-medium px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 mb-3">
+                                        <span className="inline-block text-[10px] md:text-xs font-medium px-2.5 py-1 md:px-3 md:py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 mb-2 md:mb-3">
                                             {edu.year}
                                         </span>
 
-                                        <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors duration-300 leading-tight">
+                                        <h3 className="text-base md:text-lg font-semibold text-white group-hover:text-purple-300 transition-colors duration-300 leading-tight">
                                             {edu.degree}
                                         </h3>
 
-                                        <p className="text-sm text-purple-400/80 mt-1 font-medium">
+                                        <p className="text-xs md:text-sm text-purple-400/80 mt-1 font-medium">
                                             {edu.institution}
                                         </p>
 
-                                        <span className="inline-block text-xs font-medium px-2.5 py-0.5 rounded bg-white/5 text-gray-300 border border-white/10 mt-2">
+                                        <span className="inline-block text-[10px] md:text-xs font-medium px-2 py-0.5 md:px-2.5 md:py-0.5 rounded bg-white/5 text-gray-300 border border-white/10 mt-2">
                                             {edu.grade}
                                         </span>
 
-                                        <p className="text-sm text-gray-500 mt-3 leading-relaxed">
+                                        <p className="text-xs md:text-sm text-gray-500 mt-2.5 md:mt-3 leading-relaxed">
                                             {edu.description}
                                         </p>
                                     </div>

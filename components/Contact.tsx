@@ -8,11 +8,11 @@ export default function Contact() {
     return (
         <section
             id="contact"
-            className="min-h-[60vh] py-24 px-6 flex items-center justify-center border-t border-white/10 w-full"
+            className="min-h-[60vh] py-16 md:py-24 px-4 md:px-6 flex items-center justify-center border-t border-white/10 w-full"
         >
             <div className="w-full max-w-lg">
                 <motion.h2
-                    className="text-4xl font-bold mb-4 text-center text-white"
+                    className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-center text-white"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

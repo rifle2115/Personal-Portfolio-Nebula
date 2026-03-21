@@ -36,9 +36,9 @@ const projects = [
 
 export default function Projects() {
     return (
-        <section id="projects" className="py-24 px-6 border-t border-white/10 flex flex-col items-center">
+        <section id="projects" className="py-16 md:py-24 px-4 md:px-6 border-t border-white/10 flex flex-col items-center">
             <div className="w-full max-w-6xl">
-                <h2 className="text-4xl font-bold mb-8 text-center text-white">Projects</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center text-white">Projects</h2>
 
                 {/* Police Tape Banner */}
                 <div className="relative w-full mb-10 overflow-hidden">
@@ -78,16 +78,16 @@ export default function Projects() {
                             <div className="h-[2px] w-full bg-purple-600/80 shadow-[0_0_10px_rgba(147,51,234,0.5)]"></div>
 
                             {/* Content Details */}
-                            <div className="p-6">
-                                <h3 className="text-2xl font-bold text-purple-400 mb-3 drop-shadow-sm transition-colors duration-300 group-hover:text-purple-300">{project.title}</h3>
-                                <p className="text-gray-300 text-sm leading-relaxed mb-6 group-hover:text-gray-200 transition-colors">
+                            <div className="p-5 md:p-6">
+                                <h3 className="text-xl md:text-2xl font-bold text-purple-400 mb-2 md:mb-3 drop-shadow-sm transition-colors duration-300 group-hover:text-purple-300">{project.title}</h3>
+                                <p className="text-gray-300 text-sm leading-relaxed mb-4 md:mb-6 group-hover:text-gray-200 transition-colors">
                                     {project.description}
                                 </p>
 
                                 <div className="flex flex-wrap gap-2">
                                     {project.tech.map((tech, techIndex) => (
-                                        <div key={techIndex} className="bg-white/5 border border-white/10 rounded-full px-3 py-1 flex items-center gap-1.5 text-xs text-gray-300 whitespace-nowrap transition-all duration-300 hover:border-purple-500/50 hover:bg-purple-500/20 hover:text-purple-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] cursor-default">
-                                            <svg className="w-3 h-3 text-gray-400 group-hover/icon:text-purple-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <div key={techIndex} className="bg-white/5 border border-white/10 rounded-full px-2.5 py-1 md:px-3 md:py-1 flex items-center gap-1.5 text-[10px] md:text-xs text-gray-300 whitespace-nowrap transition-all duration-300 hover:border-purple-500/50 hover:bg-purple-500/20 hover:text-purple-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] cursor-default">
+                                            <svg className="w-2.5 h-2.5 md:w-3 md:h-3 text-gray-400 group-hover/icon:text-purple-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
