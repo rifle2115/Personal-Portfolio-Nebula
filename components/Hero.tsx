@@ -9,14 +9,14 @@ import { slideInRef, staggerContainer } from "../lib/motion";
 
 export default function Hero() {
     return (
-        <section className="relative w-full min-h-screen flex items-center justify-center pt-32 pb-16 px-6 border-b-0 border-transparent overflow-hidden">
+        <section className="relative w-full min-h-screen flex items-center justify-center pt-40 pb-16 md:pt-32 px-6 border-b-0 border-transparent overflow-hidden">
             <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-12 items-center">
                 {/* Left Content */}
                 <motion.div
                     variants={staggerContainer()}
                     initial="hidden"
                     animate="visible"
-                    className="flex flex-col items-center text-center md:items-start md:text-left gap-4 md:gap-6 z-10 mt-8 md:mt-0"
+                    className="flex flex-col items-center text-center md:items-start md:text-left gap-4 md:gap-6 z-10 mt-16 md:mt-0"
                 >
                     {/* Badge - Removed as requested */}
 

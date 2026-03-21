@@ -64,7 +64,7 @@ export default function Projects() {
                     {projects.map((project, index) => (
                         <div key={index} className="bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group">
                             {/* Project Image Preview */}
-                            <div className="h-48 overflow-hidden relative">
+                            <div className="h-32 md:h-48 overflow-hidden relative">
                                 <Image
                                     src={project.image}
                                     alt={project.title}
@@ -78,9 +78,9 @@ export default function Projects() {
                             <div className="h-[2px] w-full bg-purple-600/80 shadow-[0_0_10px_rgba(147,51,234,0.5)]"></div>
 
                             {/* Content Details */}
-                            <div className="p-5 md:p-6">
-                                <h3 className="text-xl md:text-2xl font-bold text-purple-400 mb-2 md:mb-3 drop-shadow-sm transition-colors duration-300 group-hover:text-purple-300">{project.title}</h3>
-                                <p className="text-gray-300 text-sm leading-relaxed mb-4 md:mb-6 group-hover:text-gray-200 transition-colors">
+                            <div className="p-4 md:p-6">
+                                <h3 className="text-lg md:text-2xl font-bold text-purple-400 mb-2 md:mb-3 drop-shadow-sm transition-colors duration-300 group-hover:text-purple-300">{project.title}</h3>
+                                <p className="text-gray-300 text-xs md:text-sm leading-relaxed mb-4 md:mb-6 group-hover:text-gray-200 transition-colors line-clamp-3 md:line-clamp-none">
                                     {project.description}
                                 </p>
 
