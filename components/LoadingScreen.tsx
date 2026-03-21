@@ -73,7 +73,7 @@ export default function LoadingScreen() {
                             className="flex flex-col items-center gap-3"
                         >
                             <h2 className="text-xl md:text-2xl font-medium tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 uppercase">
-                                Initializing
+                                Loading
                             </h2>
                             <div className="flex gap-1.5">
                                 {[0, 1, 2].map((i) => (
