@@ -60,10 +60,11 @@ export default function Projects() {
                     </div>
                 </div>
 
-                <div className="flex flex-row w-full overflow-x-auto pb-8 gap-5 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:pb-0 scrollbar-hide py-2 scroll-smooth">
+                <div className="w-full overflow-x-auto whitespace-nowrap pb-8 scroll-smooth scrollbar-hide md:whitespace-normal md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:pb-0">
                     {projects.map((project, index) => (
-                        <div key={index} className="w-[300px] shrink-0 md:w-auto md:shrink bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group flex flex-col">
-                            {/* Project Image Preview */}
+                        <div key={index} className="inline-block whitespace-normal align-top w-[300px] mr-5 md:mr-0 md:w-auto md:block bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group">
+                            <div className="flex flex-col h-full">
+                                {/* Project Image Preview */}
                             <div className="h-40 md:h-48 overflow-hidden relative flex-shrink-0">
                                 <Image
                                     src={project.image}
@@ -92,6 +93,7 @@ export default function Projects() {
                                     ))}
                                 </div>
                             </div>
+                        </div>
                         </div>
                     ))}
                 </div>

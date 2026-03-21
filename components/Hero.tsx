@@ -9,7 +9,7 @@ import { slideInRef, staggerContainer } from "../lib/motion";
 
 export default function Hero() {
     return (
-        <section className="relative w-full min-h-screen flex items-center justify-center pt-40 pb-16 md:pt-32 px-6 border-b-0 border-transparent overflow-hidden">
+        <section className="relative w-full min-h-screen flex items-center justify-center pt-40 pb-16 md:pt-32 px-6 border-b-0 border-transparent">
             <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-12 items-center">
                 {/* Left Content */}
                 <motion.div
