@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import NebulaBackground from "@/components/NebulaBackground";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,11 +30,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground relative`}
       >
-        {/* Animated deep space background effects */}
-        <div className="fixed inset-0 stars-bg z-[-2] pointer-events-none"></div>
-        <div className="fixed inset-0 bg-background/80 z-[-1] pointer-events-none"></div>
+        <LoadingScreen />
+        
+        {/* Interactive Nebula Canvas Background */}
+        <NebulaBackground />
 
-        <div className="nebula-glow pointer-events-none"></div>
         <div className="vignette-overlay pointer-events-none"></div>
 
         <Navbar />
@@ -43,3 +45,4 @@ export default function RootLayout({
     </html>
   );
 }
+

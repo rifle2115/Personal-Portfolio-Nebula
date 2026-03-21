@@ -57,7 +57,7 @@ export default function Hero() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1.2, ease: "easeOut" }}
-                    className="relative w-full aspect-square flex items-center justify-center drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                    className="relative w-full aspect-square flex items-center justify-center drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] scale-75 sm:scale-90 md:scale-100 mt-10 md:mt-0"
                 >
 
                     {/* Central Profile Photo */}
