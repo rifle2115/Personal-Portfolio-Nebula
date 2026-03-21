@@ -60,11 +60,11 @@ export default function Projects() {
                     </div>
                 </div>
 
-                <div className="flex overflow-x-auto pb-8 -mx-4 px-4 snap-x snap-mandatory gap-4 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
+                <div className="flex flex-row overflow-x-auto pb-8 gap-5 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:pb-0 scrollbar-hide py-2">
                     {projects.map((project, index) => (
-                        <div key={index} className="w-[85vw] max-w-[320px] md:max-w-none md:w-auto flex-shrink-0 snap-center md:flex-shrink md:snap-none bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group flex flex-col">
+                        <div key={index} className="w-[85vw] sm:w-[320px] md:w-auto flex-none md:flex-auto bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group flex flex-col">
                             {/* Project Image Preview */}
-                            <div className="h-36 md:h-48 overflow-hidden relative flex-shrink-0">
+                            <div className="h-40 md:h-48 overflow-hidden relative flex-shrink-0">
                                 <Image
                                     src={project.image}
                                     alt={project.title}
