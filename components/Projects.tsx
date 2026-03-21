@@ -60,12 +60,14 @@ export default function Projects() {
                     </div>
                 </div>
 
-                {/* Mobile: Horizontal scroll, Desktop: grid unchanged */}
-                <div className="w-full overflow-x-auto overflow-y-visible scrollbar-hide md:overflow-visible snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0">
-                    <div className="flex flex-nowrap w-max gap-4 pl-4 pr-4 pb-8 md:grid md:grid-cols-2 md:gap-8 md:w-full md:pl-0 md:pr-0 md:pb-0">
-
+                {/* Scroll container breaks out of px-4 parent via -mx-4, then px-4 restores left indent */}
+                <div className="-mx-4 md:mx-0 overflow-x-auto md:overflow-visible scrollbar-hide snap-x snap-mandatory md:snap-none">
+                    <div className="flex flex-nowrap gap-4 px-4 pb-4 md:grid md:grid-cols-2 md:gap-8 md:px-0 md:pb-0">
                         {projects.map((project, index) => (
-                            <div key={index} className="w-[300px] sm:w-[320px] shrink-0 snap-start md:w-auto md:flex-auto md:snap-none bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group flex flex-col">
+                            <div
+                                key={index}
+                                className="w-[85vw] shrink-0 snap-start md:w-auto md:shrink md:snap-none bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group flex flex-col"
+                            >
                                 {/* Project Image Preview */}
                                 <div className="h-40 md:h-48 overflow-hidden relative flex-shrink-0">
                                     <Image
@@ -73,7 +75,7 @@ export default function Projects() {
                                         alt={project.title}
                                         fill
                                         className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                        sizes="(max-width: 768px) 300px, 50vw"
+                                        sizes="(max-width: 768px) 85vw, 50vw"
                                     />
                                 </div>
 
@@ -82,7 +84,9 @@ export default function Projects() {
 
                                 {/* Content Details */}
                                 <div className="p-4 md:p-6 flex flex-col flex-1">
-                                    <h3 className="text-lg md:text-2xl font-bold text-purple-400 mb-2 md:mb-3 drop-shadow-sm transition-colors duration-300 group-hover:text-purple-300 leading-tight">{project.title}</h3>
+                                    <h3 className="text-lg md:text-2xl font-bold text-purple-400 mb-2 md:mb-3 drop-shadow-sm transition-colors duration-300 group-hover:text-purple-300 leading-tight">
+                                        {project.title}
+                                    </h3>
                                     <p className="text-gray-300 text-xs md:text-sm leading-relaxed mb-4 md:mb-6 group-hover:text-gray-200 transition-colors line-clamp-3 md:line-clamp-none flex-1">
                                         {project.description}
                                     </p>
@@ -98,8 +102,11 @@ export default function Projects() {
                             </div>
                         ))}
 
+                        {/* Right padding spacer so last card doesn't sit flush against edge */}
+                        <div className="w-4 shrink-0 md:hidden" />
                     </div>
                 </div>
+
             </div>
         </section>
     );
