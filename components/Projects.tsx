@@ -36,14 +36,14 @@ const projects = [
 
 export default function Projects() {
     return (
-        <section id="projects" className="py-16 md:py-24 px-4 md:px-6 border-t border-white/10 flex flex-col items-center">
+        <section id="projects" className="py-12 sm:py-16 md:py-24 px-4 md:px-6 border-t border-white/10 flex flex-col items-center">
             <div className="w-full max-w-6xl">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center text-white">Projects</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 sm:mb-6 md:mb-8 text-center text-white">Projects</h2>
 
                 {/* Police Tape Banner */}
-                <div className="relative w-full mb-8 md:mb-6 overflow-hidden">
-                    <div className="relative -mx-6 md:mx-0 -rotate-1">
-                        <div className="w-[110%] -ml-[5%] py-2.5 md:py-0 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.4)]">
+                <div className="relative w-full mb-6 sm:mb-8 md:mb-6 overflow-hidden">
+                    <div className="relative -mx-4 sm:-mx-6 md:mx-0 -rotate-1">
+                        <div className="w-[110%] -ml-[5%] py-2 sm:py-2.5 md:py-0 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.4)]">
                             <div
                                 className="overflow-hidden"
                                 style={{
@@ -51,7 +51,7 @@ export default function Projects() {
                                 }}
                             >
                                 <div className="animate-[marquee_15s_linear_infinite] whitespace-nowrap py-0.5 md:py-1">
-                                    <span className="text-black font-extrabold text-sm tracking-[0.3em] uppercase">
+                                    <span className="text-black font-extrabold text-xs sm:text-sm tracking-[0.3em] uppercase">
                                         ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠&nbsp;&nbsp;&nbsp;&nbsp;
                                     </span>
                                 </div>
@@ -60,51 +60,88 @@ export default function Projects() {
                     </div>
                 </div>
 
-                {/* Scroll container breaks out of px-4 parent via -mx-4, then px-4 restores left indent */}
-                <div className="-mx-4 md:mx-0 overflow-x-auto md:overflow-visible scrollbar-hide snap-x snap-mandatory md:snap-none">
-                    <div className="flex flex-nowrap gap-4 px-4 pb-4 md:grid md:grid-cols-2 md:gap-8 md:px-0 md:pb-0">
-                        {projects.map((project, index) => (
-                            <div
-                                key={index}
-                                className="w-[85vw] shrink-0 snap-start md:w-auto md:shrink md:snap-none bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group flex flex-col"
-                            >
-                                {/* Project Image Preview */}
-                                <div className="h-40 md:h-48 overflow-hidden relative flex-shrink-0">
-                                    <Image
-                                        src={project.image}
-                                        alt={project.title}
-                                        fill
-                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                        sizes="(max-width: 768px) 85vw, 50vw"
-                                    />
-                                </div>
+                {/* Mobile: vertical stack | Desktop: 2-col grid */}
+                <div className="flex flex-col gap-4 sm:gap-5 md:hidden">
+                    {projects.map((project, index) => (
+                        <div
+                            key={index}
+                            className="bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 active:border-purple-500/50 group flex flex-col"
+                        >
+                            {/* Project Image Preview */}
+                            <div className="h-36 sm:h-40 overflow-hidden relative flex-shrink-0">
+                                <Image
+                                    src={project.image}
+                                    alt={project.title}
+                                    fill
+                                    className="object-cover"
+                                    sizes="100vw"
+                                />
+                            </div>
 
-                                {/* Purple Separator Border */}
-                                <div className="h-[2px] w-full bg-purple-600/80 shadow-[0_0_10px_rgba(147,51,234,0.5)]"></div>
+                            {/* Purple Separator Border */}
+                            <div className="h-[2px] w-full bg-purple-600/80 shadow-[0_0_10px_rgba(147,51,234,0.5)]"></div>
 
-                                {/* Content Details */}
-                                <div className="p-4 md:p-6 flex flex-col flex-1">
-                                    <h3 className="text-lg md:text-2xl font-bold text-purple-400 mb-2 md:mb-3 drop-shadow-sm transition-colors duration-300 group-hover:text-purple-300 leading-tight">
-                                        {project.title}
-                                    </h3>
-                                    <p className="text-gray-300 text-xs md:text-sm leading-relaxed mb-4 md:mb-6 group-hover:text-gray-200 transition-colors line-clamp-3 md:line-clamp-none flex-1">
-                                        {project.description}
-                                    </p>
+                            {/* Content Details */}
+                            <div className="p-4 flex flex-col flex-1">
+                                <h3 className="text-base sm:text-lg font-bold text-purple-400 mb-1.5 sm:mb-2 drop-shadow-sm leading-tight">
+                                    {project.title}
+                                </h3>
+                                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-3 flex-1">
+                                    {project.description}
+                                </p>
 
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2 mt-auto">
-                                        {project.tech.map((tech, techIndex) => (
-                                            <div key={techIndex} className="bg-white/5 border border-white/10 rounded-md md:rounded-full px-2 py-0.5 md:px-3 md:py-1 flex items-center gap-1 text-[10px] md:text-xs text-gray-300 whitespace-nowrap transition-all duration-300 hover:border-purple-500/50 hover:bg-purple-500/20 hover:text-purple-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] cursor-default">
-                                                {tech}
-                                            </div>
-                                        ))}
-                                    </div>
+                                <div className="flex flex-wrap gap-1.5 mt-auto">
+                                    {project.tech.map((tech, techIndex) => (
+                                        <div key={techIndex} className="bg-white/5 border border-white/10 rounded-md px-2 py-0.5 text-[10px] sm:text-xs text-gray-300 whitespace-nowrap">
+                                            {tech}
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
-                        ))}
+                        </div>
+                    ))}
+                </div>
 
-                        {/* Right padding spacer so last card doesn't sit flush against edge */}
-                        <div className="w-4 shrink-0 md:hidden" />
-                    </div>
+                {/* Desktop: 2-col grid */}
+                <div className="hidden md:grid md:grid-cols-2 md:gap-8">
+                    {projects.map((project, index) => (
+                        <div
+                            key={index}
+                            className="bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group flex flex-col"
+                        >
+                            {/* Project Image Preview */}
+                            <div className="h-48 overflow-hidden relative flex-shrink-0">
+                                <Image
+                                    src={project.image}
+                                    alt={project.title}
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                    sizes="50vw"
+                                />
+                            </div>
+
+                            {/* Purple Separator Border */}
+                            <div className="h-[2px] w-full bg-purple-600/80 shadow-[0_0_10px_rgba(147,51,234,0.5)]"></div>
+
+                            {/* Content Details */}
+                            <div className="p-6 flex flex-col flex-1">
+                                <h3 className="text-2xl font-bold text-purple-400 mb-3 drop-shadow-sm transition-colors duration-300 group-hover:text-purple-300 leading-tight">
+                                    {project.title}
+                                </h3>
+                                <p className="text-gray-300 text-sm leading-relaxed mb-6 group-hover:text-gray-200 transition-colors flex-1">
+                                    {project.description}
+                                </p>
+
+                                <div className="flex flex-wrap gap-2 mt-auto">
+                                    {project.tech.map((tech, techIndex) => (
+                                        <div key={techIndex} className="bg-white/5 border border-white/10 rounded-full px-3 py-1 flex items-center gap-1 text-xs text-gray-300 whitespace-nowrap transition-all duration-300 hover:border-purple-500/50 hover:bg-purple-500/20 hover:text-purple-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] cursor-default">
+                                            {tech}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
 
             </div>

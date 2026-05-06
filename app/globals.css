@@ -18,10 +18,22 @@
   }
 }
 
+/* ── Global body styles ─────────────────────────────────────── */
 body {
   color: var(--color-foreground);
   background: var(--color-background);
   font-family: var(--font-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
+  /* Smooth momentum scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Prevent overscroll bounce on mobile ─────────────────────── */
+html {
+  overscroll-behavior: none;
 }
 
 /* Background Stars Animation can go here or directly in the layout */
@@ -47,15 +59,15 @@ body {
 
 /* Global Vignette for cinematic depth */
 .vignette-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
   background: radial-gradient(circle at center, transparent 40%, rgba(3, 7, 18, 0.8) 120%);
-  z-index: 100;
-  /* Stays on top but doesn't block clicks */
+  z-index: 1;
+  /* Low z-index — above background canvas but below everything else */
 }
 
 /* The glowing deep purple aura at the top */
@@ -80,6 +92,15 @@ body {
   opacity: 0.9;
 }
 
+/* ── Mobile: Reduce nebula glow intensity for performance ──── */
+@media (max-width: 768px) {
+  .nebula-glow {
+    height: 250px;
+    filter: blur(60px);
+    opacity: 0.7;
+  }
+}
+
 /* Police tape marquee animation */
 @keyframes marquee {
   0% {
@@ -88,5 +109,33 @@ body {
 
   100% {
     transform: translateX(-50%);
+  }
+}
+
+/* ── Scrollbar hide utility for horizontal carousels ─────────── */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Mobile touch-friendly tap targets ───────────────────────── */
+@media (max-width: 768px) {
+  /* Ensure minimum tap target size (48px recommended by Google) */
+  a, button {
+    min-height: 44px;
+    /* iOS minimum */
+  }
+}
+
+/* ── Safe area insets for notched phones (iPhone X+) ─────────── */
+@supports (padding: env(safe-area-inset-top)) {
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }

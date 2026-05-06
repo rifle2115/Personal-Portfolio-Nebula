@@ -65,9 +65,13 @@ export default function NebulaBackground() {
   const animRef = useRef<number>(0);
 
   // ── Star Field ──────────────────────────────────────────────
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+  // ── Star Field ──────────────────────────────────────────────
   const mkStars = useCallback((w: number, h: number): Star[] => {
     const out: Star[] = [];
-    const n = Math.min(Math.floor((w * h) / 2500), 500);
+    const mobile = w < 768;
+    const n = Math.min(Math.floor((w * h) / (mobile ? 4000 : 2500)), mobile ? 200 : 500);
     for (let i = 0; i < n; i++) {
       const bright = Math.random() < 0.1;
       out.push({
@@ -88,7 +92,8 @@ export default function NebulaBackground() {
   // ── Dust Particles (interactive) ────────────────────────────
   const mkDust = useCallback((w: number, h: number): DustParticle[] => {
     const out: DustParticle[] = [];
-    const n = Math.min(Math.floor((w * h) / 7000), 180);
+    const mobile = w < 768;
+    const n = Math.min(Math.floor((w * h) / (mobile ? 12000 : 7000)), mobile ? 60 : 180);
     const colors = [NC.deepPink, NC.hotPink, NC.lavender, NC.cosmicBlue, NC.cyan, NC.magenta, NC.white, NC.rosePink];
     for (let i = 0; i < n; i++) {
       const x = rand(0, w), y = rand(0, h);
@@ -138,7 +143,8 @@ export default function NebulaBackground() {
   const mkWisps = useCallback((w: number, h: number): Wisp[] => {
     const out: Wisp[] = [];
     const colors = [NC.deepPink, NC.hotPink, NC.magenta, NC.lavender, NC.cosmicBlue, NC.rosePink];
-    for (let i = 0; i < 8; i++) {
+    const count = w < 768 ? 4 : 8;
+    for (let i = 0; i < count; i++) {
       out.push({
         x: rand(w * 0.1, w * 0.9),
         y: rand(h * 0.1, h * 0.9),
@@ -160,7 +166,8 @@ export default function NebulaBackground() {
   const mkOrbs = useCallback((w: number, h: number): FloatingOrb[] => {
     const out: FloatingOrb[] = [];
     const colors = [NC.hotPink, NC.lavender, NC.cyan, NC.deepPink, NC.rosePink];
-    for (let i = 0; i < 18; i++) {
+    const count = w < 768 ? 8 : 18;
+    for (let i = 0; i < count; i++) {
       out.push({
         x: rand(0, w), y: rand(0, h),
         size: rand(35, 100), opacity: rand(0.015, 0.05),
@@ -198,7 +205,8 @@ export default function NebulaBackground() {
 
     let w = window.innerWidth;
     let h = window.innerHeight;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const mobileDev = w < 768;
+    const dpr = Math.min(window.devicePixelRatio || 1, mobileDev ? 1.5 : 2);
 
     const resize = () => {
       w = window.innerWidth;
@@ -229,10 +237,18 @@ export default function NebulaBackground() {
       orbs = mkOrbs(w, h);
     };
     const onMouse = (e: MouseEvent) => { mouseRef.current = { x: e.clientX, y: e.clientY }; };
+    const onTouch = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        mouseRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }
+    };
+    const onTouchEnd = () => { mouseRef.current = { x: -9999, y: -9999 }; };
     const onLeave = () => { mouseRef.current = { x: -9999, y: -9999 }; };
 
     window.addEventListener("resize", onResize);
     window.addEventListener("mousemove", onMouse);
+    window.addEventListener("touchmove", onTouch, { passive: true });
+    window.addEventListener("touchend", onTouchEnd);
     document.addEventListener("mouseleave", onLeave);
 
     // ── DRAW: Nebula Clouds ──────────────────────────────────
@@ -551,6 +567,8 @@ export default function NebulaBackground() {
       cancelAnimationFrame(animRef.current);
       window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouse);
+      window.removeEventListener("touchmove", onTouch);
+      window.removeEventListener("touchend", onTouchEnd);
       document.removeEventListener("mouseleave", onLeave);
     };
   }, [mkStars, mkDust, mkClouds, mkWisps, mkOrbs, mkShootingStar]);
