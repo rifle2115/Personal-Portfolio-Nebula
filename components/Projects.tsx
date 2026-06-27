@@ -1,149 +1,125 @@
-import React from "react";
 import Image from "next/image";
+import { ExternalLink, Github } from "lucide-react";
 
-const projects = [
+type Project = {
+    title: string;
+    description: string;
+    tech: string[];
+    image: string;
+    link: string;
+    linkType: "live" | "code";
+};
+
+const projects: Project[] = [
+    // ── Top row ──────────────────────────────────────────────
     {
-        title: "Adventure Liability Form Summarization",
-        description: "An AI-driven document summarization tool designed to extract and condense key information from complex liability forms. It automatically processes input text and generates concise summaries, saving time and improving readability.",
-        tech: ["Python", "NLP (Custom summ.)", "Flask", "Streamlit/CLI", "Regex/Text processing"],
-        image: "/project-liability-form.png",
+        title: "Repo Compass",
+        description:
+            "Codebase Understanding Platform — a full-stack web app that analyzes public GitHub repositories, ranks important files, explains the codebase using LLMs, and visualizes project structure through an interactive 3D code city and built-in code browser.",
+        tech: ["TypeScript", "React", "Vite", "three.js / 3d-force-graph", "Google Gemini", "GitHub REST API", "Vercel Serverless", "highlight.js", "PageRank/centrality"],
+        image: "/project-repocompass.png",
+        link: "https://repocompass.vercel.app/",
+        linkType: "live",
     },
     {
-        title: "Administrative Delay in Hospital Prediction",
-        description: "A machine learning-based system to predict administrative delays in hospital workflows. The model analyzes structured healthcare operational data to forecast delays, helping optimize resource allocation and patient scheduling.",
-        tech: ["Python", "Scikit-learn", "Pandas", "Data Visualization"],
-        image: "/project-hospital-delay.png",
+        title: "TokenOptimizer",
+        description:
+            "A Claude Code plugin that uses Groq to analyze prompt complexity and automatically route tasks to the most cost-effective Claude model (Haiku, Sonnet, or Opus), reducing costs while maintaining performance. Includes interactive, CLI, and advisory modes.",
+        tech: ["Python (stdlib only)", "Groq API", "Llama-3.3-70B", "Anthropic Claude CLI", "Claude Code plugin hooks", "ANSI/truecolor TUI", "Regex/text processing"],
+        image: "/project-tokenoptimizer.png",
+        link: "https://github.com/rifle2115/TokenOptimization",
+        linkType: "code",
+    },
+    // ── Bottom row ───────────────────────────────────────────
+    {
+        title: "CrashLens",
+        description:
+            "AI Crash & Log Intelligence Platform — a full-stack web app that ingests raw application logs and stack traces, parses and classifies errors, and uses an LLM to explain root causes, surface recurring failure patterns, and visualize error metrics on a live dashboard.",
+        tech: ["Python", "FastAPI", "Next.js / React", "TypeScript", "PostgreSQL", "SQLAlchemy", "Alembic", "Groq LLM API", "Docker", "Docker Compose"],
+        image: "/project-crashlens.png",
+        link: "https://crashlens-frontend.onrender.com/",
+        linkType: "live",
     },
     {
-        title: "Resume Relevance Score Predictor",
-        description: "An intelligent predictor that evaluates how well a resume matches a given job description. It uses natural language processing and semantic similarity techniques to score relevance, enabling automated resume ranking for applicant screening.",
-        tech: ["Python", "NLP (embeddings)", "Text preprocessing", "JSON/CSV", "Flask/Streamlit"],
-        image: "/project-resume-scorer.png",
+        title: "Aegis AI",
+        description:
+            "Unified AI Decision Platform — a single Streamlit app that brings five AI/ML modules under one interface: document summarization, resume–JD relevance scoring, OMR auto-grading, hospital delay prediction, and deepfake spread analysis.",
+        tech: ["Python", "Streamlit", "Flask", "NLP (embeddings)", "Scikit-learn", "TensorFlow/PyTorch", "OpenCV", "NetworkX", "Pandas"],
+        image: "/project-aegis.png",
+        link: "https://aegis-ai.streamlit.app/",
+        linkType: "live",
     },
-    {
-        title: "OMR Scoring with Deep Learning",
-        description: "An automated Optical Mark Recognition (OMR) scoring system that uses deep learning to detect and grade filled-in bubbles on answer sheets. Useful for test scoring automation, this project combines computer vision with ML pipelines.",
-        tech: ["Python", "Deep Learning", "OpenCV", "TensorFlow/PyTorch", "Image preprocessing"],
-        image: "/project-omr-scoring.png",
-    },
-    {
-        title: "DeepFake Detection & Social Network Analysis",
-        description: "A combined project exploring deepfake detection and social network graph analysis. It implements algorithms to identify fake multimedia content and analyzes information spread patterns using graph structures.",
-        tech: ["Python", "Computer Vision", "Social Network Graphs", "NetworkX/Pandas", "Machine Learning"],
-        image: "/project-deepfake.png",
-    }
 ];
 
 export default function Projects() {
     return (
         <section id="projects" className="py-12 sm:py-16 md:py-24 px-4 md:px-6 border-t border-white/10 flex flex-col items-center">
             <div className="w-full max-w-6xl">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 sm:mb-6 md:mb-8 text-center text-white">Projects</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-10 md:mb-12 text-center text-white">Projects</h2>
 
-                {/* Police Tape Banner */}
-                <div className="relative w-full mb-6 sm:mb-8 md:mb-6 overflow-hidden">
-                    <div className="relative -mx-4 sm:-mx-6 md:mx-0 -rotate-1">
-                        <div className="w-[110%] -ml-[5%] py-2 sm:py-2.5 md:py-0 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.4)]">
-                            <div
-                                className="overflow-hidden"
-                                style={{
-                                    backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.3) 10px, rgba(0,0,0,0.3) 20px)",
-                                }}
-                            >
-                                <div className="animate-[marquee_15s_linear_infinite] whitespace-nowrap py-0.5 md:py-1">
-                                    <span className="text-black font-extrabold text-xs sm:text-sm tracking-[0.3em] uppercase">
-                                        ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠ VIEW ONLY ⚠&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Mobile: vertical stack | Desktop: 2-col grid */}
-                <div className="flex flex-col gap-4 sm:gap-5 md:hidden">
+                {/* Mobile: vertical stack | Desktop: 2x2 grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-8">
                     {projects.map((project, index) => (
-                        <div
+                        <a
                             key={index}
-                            className="bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 active:border-purple-500/50 group flex flex-col"
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] active:border-purple-500/50 group flex flex-col"
                         >
                             {/* Project Image Preview */}
-                            <div className="h-36 sm:h-40 overflow-hidden relative flex-shrink-0">
+                            <div className="h-40 sm:h-44 md:h-48 overflow-hidden relative flex-shrink-0">
                                 <Image
                                     src={project.image}
                                     alt={project.title}
                                     fill
-                                    className="object-cover"
-                                    sizes="100vw"
+                                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                 />
+
+                                {/* Live / Code badge */}
+                                <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-medium text-gray-200">
+                                    {project.linkType === "code" ? (
+                                        <Github className="w-3.5 h-3.5" />
+                                    ) : (
+                                        <ExternalLink className="w-3.5 h-3.5" />
+                                    )}
+                                    {project.linkType === "code" ? "Code" : "Live"}
+                                </div>
                             </div>
 
                             {/* Purple Separator Border */}
                             <div className="h-[2px] w-full bg-purple-600/80 shadow-[0_0_10px_rgba(147,51,234,0.5)]"></div>
 
                             {/* Content Details */}
-                            <div className="p-4 flex flex-col flex-1">
-                                <h3 className="text-base sm:text-lg font-bold text-purple-400 mb-1.5 sm:mb-2 drop-shadow-sm leading-tight">
+                            <div className="p-4 sm:p-5 md:p-6 flex flex-col flex-1">
+                                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-purple-400 mb-2 md:mb-3 drop-shadow-sm transition-colors duration-300 group-hover:text-purple-300 leading-tight">
                                     {project.title}
                                 </h3>
-                                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-3 flex-1">
+                                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4 md:mb-5 group-hover:text-gray-200 transition-colors flex-1">
                                     {project.description}
                                 </p>
 
-                                <div className="flex flex-wrap gap-1.5 mt-auto">
+                                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
                                     {project.tech.map((tech, techIndex) => (
-                                        <div key={techIndex} className="bg-white/5 border border-white/10 rounded-md px-2 py-0.5 text-[10px] sm:text-xs text-gray-300 whitespace-nowrap">
+                                        <span
+                                            key={techIndex}
+                                            className="bg-white/5 border border-white/10 rounded-full px-2.5 py-1 text-[10px] sm:text-xs text-gray-300 whitespace-nowrap transition-all duration-300 group-hover:border-purple-500/30"
+                                        >
                                             {tech}
-                                        </div>
+                                        </span>
                                     ))}
                                 </div>
+
+                                {/* CTA */}
+                                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-purple-400 group-hover:text-purple-300 transition-colors mt-auto">
+                                    {project.linkType === "code" ? "View Code" : "Live Demo"}
+                                    <ExternalLink className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                </span>
                             </div>
-                        </div>
+                        </a>
                     ))}
                 </div>
-
-                {/* Desktop: 2-col grid */}
-                <div className="hidden md:grid md:grid-cols-2 md:gap-8">
-                    {projects.map((project, index) => (
-                        <div
-                            key={index}
-                            className="bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] group flex flex-col"
-                        >
-                            {/* Project Image Preview */}
-                            <div className="h-48 overflow-hidden relative flex-shrink-0">
-                                <Image
-                                    src={project.image}
-                                    alt={project.title}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                    sizes="50vw"
-                                />
-                            </div>
-
-                            {/* Purple Separator Border */}
-                            <div className="h-[2px] w-full bg-purple-600/80 shadow-[0_0_10px_rgba(147,51,234,0.5)]"></div>
-
-                            {/* Content Details */}
-                            <div className="p-6 flex flex-col flex-1">
-                                <h3 className="text-2xl font-bold text-purple-400 mb-3 drop-shadow-sm transition-colors duration-300 group-hover:text-purple-300 leading-tight">
-                                    {project.title}
-                                </h3>
-                                <p className="text-gray-300 text-sm leading-relaxed mb-6 group-hover:text-gray-200 transition-colors flex-1">
-                                    {project.description}
-                                </p>
-
-                                <div className="flex flex-wrap gap-2 mt-auto">
-                                    {project.tech.map((tech, techIndex) => (
-                                        <div key={techIndex} className="bg-white/5 border border-white/10 rounded-full px-3 py-1 flex items-center gap-1 text-xs text-gray-300 whitespace-nowrap transition-all duration-300 hover:border-purple-500/50 hover:bg-purple-500/20 hover:text-purple-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] cursor-default">
-                                            {tech}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
             </div>
         </section>
     );
