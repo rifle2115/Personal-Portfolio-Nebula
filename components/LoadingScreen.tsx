@@ -5,14 +5,18 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const NAME = "Elvis Bibu";
 
+// SVG canvas dimensions used for the name reveal
+const VB_W = 640;
+const VB_H = 180;
+
 export default function LoadingScreen() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Let the Netflix-style intro play out, then reveal the site.
+        // Let the name finish "drawing", then reveal the site.
         const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 3200);
+        }, 3400);
 
         return () => clearTimeout(timer);
     }, []);
@@ -26,6 +30,15 @@ export default function LoadingScreen() {
         }
     }, [isLoading]);
 
+    // Shared timing so the reveal mask and the traveling light stay in sync
+    const drawDuration = 2.6;
+    const drawDelay = 0.4;
+    const sweep = {
+        duration: drawDuration,
+        delay: drawDelay,
+        ease: "easeInOut" as const,
+    };
+
     return (
         <AnimatePresence>
             {isLoading && (
@@ -34,57 +47,119 @@ export default function LoadingScreen() {
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.7, ease: "easeInOut" }}
-                    className="fixed inset-0 z-[100] flex items-center justify-center bg-[#05050f] overflow-hidden"
+                    className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black overflow-hidden"
                 >
-                    {/* Soft cinematic glow behind the name */}
-                    <div className="absolute inset-0 z-0 pointer-events-none">
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-purple-600/10 rounded-full blur-[120px]" />
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[90px]" />
-                    </div>
-
-                    {/* Netflix-style name reveal */}
-                    <motion.div
-                        className="relative z-10 px-4"
-                        initial={{ opacity: 0, scale: 0.92, letterSpacing: "0.55em" }}
-                        animate={{
-                            opacity: [0, 1, 1, 1],
-                            scale: [0.92, 1, 1, 1.22],
-                            letterSpacing: ["0.55em", "0.04em", "0.04em", "0.08em"],
-                        }}
-                        transition={{
-                            duration: 3.2,
-                            times: [0, 0.3, 0.78, 1],
-                            ease: ["easeOut", "linear", "easeIn"],
-                        }}
-                        style={{ willChange: "transform, opacity" }}
-                    >
-                        {/* Base gradient text — matches the hero "Elvis Bibu" color */}
-                        <h1 className="text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-r from-[#e8b4fe] via-[#c084fc] to-[#60a5fa] drop-shadow-[0_0_45px_rgba(168,85,247,0.45)] whitespace-nowrap text-center">
-                            {NAME}
-                        </h1>
-
-                        {/* Light shimmer sweeping across the letters */}
-                        <motion.h1
-                            aria-hidden="true"
-                            className="absolute inset-0 text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight leading-none text-transparent bg-clip-text whitespace-nowrap text-center"
-                            style={{
-                                backgroundImage:
-                                    "linear-gradient(110deg, transparent 35%, rgba(255,255,255,0.85) 50%, transparent 65%)",
-                                backgroundSize: "250% 100%",
-                            }}
-                            initial={{ backgroundPosition: "180% 0" }}
-                            animate={{ backgroundPosition: ["180% 0", "-80% 0"] }}
-                            transition={{
-                                duration: 1.6,
-                                delay: 0.5,
-                                repeat: Infinity,
-                                repeatDelay: 0.6,
-                                ease: "easeInOut",
-                            }}
+                    <div className="relative w-[88%] max-w-[640px]">
+                        <svg
+                            viewBox={`0 0 ${VB_W} ${VB_H}`}
+                            className="w-full h-auto overflow-visible"
+                            role="img"
+                            aria-label={`${NAME} — loading`}
                         >
-                            {NAME}
-                        </motion.h1>
-                    </motion.div>
+                            <defs>
+                                {/* Brand gradient — same as the hero "Elvis Bibu" */}
+                                <linearGradient id="nameGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stopColor="#e8b4fe" />
+                                    <stop offset="50%" stopColor="#c084fc" />
+                                    <stop offset="100%" stopColor="#60a5fa" />
+                                </linearGradient>
+
+                                {/* Soft purple halo for the neon glow */}
+                                <filter id="halo" x="-30%" y="-60%" width="160%" height="220%">
+                                    <feGaussianBlur stdDeviation="6" />
+                                </filter>
+
+                                {/* White-hot glow for the traveling light head */}
+                                <radialGradient id="lightGlow" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
+                                    <stop offset="35%" stopColor="#d8b4fe" stopOpacity="0.7" />
+                                    <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+                                </radialGradient>
+
+                                {/* Left-to-right reveal mask that "draws" the letters in order */}
+                                <clipPath id="reveal">
+                                    <motion.rect
+                                        x={0}
+                                        y={0}
+                                        height={VB_H}
+                                        initial={{ width: 0 }}
+                                        animate={{ width: VB_W }}
+                                        transition={sweep}
+                                    />
+                                </clipPath>
+                            </defs>
+
+                            {/* The name, revealed through the sweeping mask */}
+                            <g clipPath="url(#reveal)">
+                                {/* Purple halo layer */}
+                                <text
+                                    x={VB_W / 2}
+                                    y={VB_H / 2}
+                                    textAnchor="middle"
+                                    dominantBaseline="central"
+                                    fill="none"
+                                    stroke="#a855f7"
+                                    strokeWidth={5}
+                                    filter="url(#halo)"
+                                    opacity={0.85}
+                                    style={{ fontFamily: "inherit", fontWeight: 800, fontSize: 82, letterSpacing: 2 }}
+                                >
+                                    {NAME}
+                                </text>
+
+                                {/* Bright gradient core */}
+                                <text
+                                    x={VB_W / 2}
+                                    y={VB_H / 2}
+                                    textAnchor="middle"
+                                    dominantBaseline="central"
+                                    fill="none"
+                                    stroke="url(#nameGrad)"
+                                    strokeWidth={2}
+                                    strokeLinejoin="round"
+                                    style={{ fontFamily: "inherit", fontWeight: 800, fontSize: 82, letterSpacing: 2 }}
+                                >
+                                    {NAME}
+                                </text>
+                            </g>
+
+                            {/* Traveling light head — like the glow tracing the path in the reference */}
+                            <motion.g
+                                initial={{ x: 0, opacity: 0 }}
+                                animate={{ x: VB_W, opacity: [0, 1, 1, 0] }}
+                                transition={{
+                                    x: sweep,
+                                    opacity: { duration: drawDuration + 0.4, delay: drawDelay, times: [0, 0.06, 0.88, 1] },
+                                }}
+                            >
+                                <ellipse cx={0} cy={VB_H / 2} rx={20} ry={60} fill="url(#lightGlow)" />
+                                <rect
+                                    x={-2}
+                                    y={VB_H / 2 - 46}
+                                    width={4}
+                                    height={92}
+                                    rx={2}
+                                    fill="#ffffff"
+                                    filter="url(#halo)"
+                                />
+                            </motion.g>
+                        </svg>
+
+                        {/* Subtle "Loading" cue beneath the name */}
+                        <div className="flex items-center justify-center gap-1.5 mt-2">
+                            <span className="text-[11px] sm:text-xs tracking-[0.35em] uppercase text-purple-300/60">
+                                Loading
+                            </span>
+                            {[0, 1, 2].map((i) => (
+                                <motion.span
+                                    key={i}
+                                    animate={{ opacity: [0.2, 1, 0.2] }}
+                                    transition={{ duration: 1.4, repeat: Infinity, delay: i * 0.2 }}
+                                    className="w-1 h-1 rounded-full bg-purple-400/70"
+                                />
+                            ))}
+                        </div>
+                    </div>
                 </motion.div>
             )}
         </AnimatePresence>
