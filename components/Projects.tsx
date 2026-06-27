@@ -13,7 +13,7 @@ type Project = {
 const projects: Project[] = [
     // ── Top row ──────────────────────────────────────────────
     {
-        title: "Repo Compass",
+        title: "RepoCompass",
         description:
             "Codebase Understanding Platform — a full-stack web app that analyzes public GitHub repositories, ranks important files, explains the codebase using LLMs, and visualizes project structure through an interactive 3D code city and built-in code browser.",
         tech: ["TypeScript", "React", "Vite", "three.js / 3d-force-graph", "Google Gemini", "GitHub REST API", "Vercel Serverless", "highlight.js", "PageRank/centrality"],
@@ -68,7 +68,7 @@ export default function Projects() {
                             className="bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] active:border-purple-500/50 group flex flex-col"
                         >
                             {/* Project Image Preview */}
-                            <div className="h-40 sm:h-44 md:h-48 overflow-hidden relative flex-shrink-0">
+                            <div className="h-44 sm:h-48 md:h-48 overflow-hidden relative flex-shrink-0">
                                 <Image
                                     src={project.image}
                                     alt={project.title}
